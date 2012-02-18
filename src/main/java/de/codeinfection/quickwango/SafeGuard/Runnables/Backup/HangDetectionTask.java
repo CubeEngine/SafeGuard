@@ -18,51 +18,39 @@ public class HangDetectionTask extends SafeGuardTask
 {
     private final Server server;
     private final Thread mainThread;
-    private final int warnMinimum;
     private long oldTime;
     private int frozenTicks;
-    private long tick;
     private World firstWorld;
-    private long lastWarnedTick;
 
-    public HangDetectionTask(Server server, int warnMinimum, Thread mainThread)
+    public HangDetectionTask(Server server, Thread mainThread)
     {
         super(1000);
         this.server = server;
         this.mainThread = mainThread;
-        this.warnMinimum = warnMinimum;
         this.frozenTicks = 0;
         this.oldTime = 0;
-        this.tick = 0;
     }
 
     @Override
     public void beforeStart()
     {
         this.oldTime = 0;
-        this.tick = 0;
         this.firstWorld = this.server.getWorlds().get(0);
     }
     
     public void run()
     {
-        ++this.tick;
         long time = this.firstWorld.getFullTime();
         int delta = (int)(time - this.oldTime);
-        if (this.frozenTicks < this.warnMinimum)
+        if (this.frozenTicks < 5)
         {
             if (delta <= 0)
             {
                 this.frozenTicks++;
             }
-            else if (delta < this.warnMinimum)
+            else
             {
                 this.frozenTicks = 0;
-                if (this.tick - this.lastWarnedTick >= 10)
-                {
-                    this.lastWarnedTick = this.tick;
-                    this.warn(delta);
-                }
             }
         }
         else
