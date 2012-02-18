@@ -1,0 +1,20 @@
+name: SafeGuard
+version: "${project.version}"
+main: de.codeinfection.quickwango.SafeGuard.SafeGuard
+commands:
+  hang:
+    usage: "/<command>"
+    description: "This command simply hangs the server :P"
+  fillram:
+    usage: "/<command>"
+    description: "This command simply fills the RAM with junk :P"
+depend: []
+softdepend: []
+database: false
+website: "http://code-infection.de"
+description: ""
+author: "Quick_Wango"
+authors:
+  - "Quick_Wango"
+load: postworld
+#permissions:
