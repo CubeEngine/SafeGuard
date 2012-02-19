@@ -18,9 +18,10 @@ public class HangDetectionTask extends SafeGuardTask
 {
     private final Server server;
     private final Thread mainThread;
-    private long oldTime;
+    private long currentTick;
+    private long oldTick;
     private int frozenTicks;
-    private World firstWorld;
+    private int serverTickCounterTaskId;
 
     public HangDetectionTask(Server server, Thread mainThread)
     {
@@ -28,20 +29,27 @@ public class HangDetectionTask extends SafeGuardTask
         this.server = server;
         this.mainThread = mainThread;
         this.frozenTicks = 0;
-        this.oldTime = 0;
+        this.oldTick = 0;
+        this.currentTick = 0;
+        this.serverTickCounterTaskId = -1;
     }
 
     @Override
     public void beforeStart()
     {
-        this.oldTime = 0;
-        this.firstWorld = this.server.getWorlds().get(0);
+        this.oldTick = 0;
+        this.serverTickCounterTaskId = this.server.getScheduler().scheduleSyncRepeatingTask(SafeGuard.getInstance(), new ServerTickCounter(), 0, 1);
+    }
+
+    @Override
+    public void beforeStop()
+    {
+        this.server.getScheduler().cancelTask(this.serverTickCounterTaskId);
     }
     
     public void run()
     {
-        long time = this.firstWorld.getFullTime();
-        int delta = (int)(time - this.oldTime);
+        int delta = (int)(this.currentTick - this.oldTick);
         if (this.frozenTicks < 5)
         {
             if (delta <= 0)
@@ -67,7 +75,7 @@ public class HangDetectionTask extends SafeGuardTask
             this.gracefullyDie();
         }
 
-        this.oldTime = time;
+        this.oldTick = this.currentTick;
     }
 
     private static int disabledPlugins;
@@ -151,5 +159,13 @@ public class HangDetectionTask extends SafeGuardTask
         this.server.broadcastMessage("The server did only reach " + delta + " ticks");
         this.server.broadcastMessage("Prepare for a restart or timeout...");
         this.server.broadcastMessage("");
+    }
+
+    private final class ServerTickCounter implements Runnable
+    {
+        public void run()
+        {
+            ++currentTick;
+        }
     }
 }

@@ -38,8 +38,9 @@ public class LowMemoryTask extends SafeGuardTask
     public void run()
     {
         ++this.tick;
-        final long free = runtime.freeMemory();
+        final long used = runtime.totalMemory() - runtime.freeMemory();
         final long max = runtime.maxMemory();
+        final long free = max - used;
         final double percentageFree = (double)free / (double)max;
 
         if (percentageFree < this.warnMinimum)
