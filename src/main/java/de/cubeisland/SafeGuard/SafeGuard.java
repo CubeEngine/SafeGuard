@@ -1,8 +1,8 @@
-package de.codeinfection.quickwango.SafeGuard;
+package de.cubeisland.SafeGuard;
 
 //import de.codeinfection.quickwango.SafeGuard.Runnables.Backup.BackupTask;
-import de.codeinfection.quickwango.SafeGuard.Runnables.Backup.HangDetectionTask;
-import de.codeinfection.quickwango.SafeGuard.Runnables.Backup.LowMemoryTask;
+import de.cubeisland.SafeGuard.Tasks.HangDetectionTask;
+import de.cubeisland.SafeGuard.Tasks.LowMemoryTask;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;

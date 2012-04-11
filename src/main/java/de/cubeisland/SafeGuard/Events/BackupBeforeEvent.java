@@ -1,4 +1,4 @@
-package de.codeinfection.quickwango.SafeGuard.Events;
+package de.cubeisland.SafeGuard.Events;
 
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;

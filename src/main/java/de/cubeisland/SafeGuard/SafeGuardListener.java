@@ -1,10 +1,10 @@
-package de.codeinfection.quickwango.SafeGuard;
+package de.cubeisland.SafeGuard;
 
-import de.codeinfection.quickwango.SafeGuard.Events.BackupBeforeEvent;
-import de.codeinfection.quickwango.SafeGuard.Events.BackupCompleteEvent;
-import de.codeinfection.quickwango.SafeGuard.Events.BackupFailedEvent;
-import de.codeinfection.quickwango.SafeGuard.Events.ServerHangEvent;
-import de.codeinfection.quickwango.SafeGuard.Events.ServerLowMemoryEvent;
+import de.cubeisland.SafeGuard.Events.BackupBeforeEvent;
+import de.cubeisland.SafeGuard.Events.BackupCompleteEvent;
+import de.cubeisland.SafeGuard.Events.BackupFailedEvent;
+import de.cubeisland.SafeGuard.Events.ServerHangEvent;
+import de.cubeisland.SafeGuard.Events.ServerLowMemoryEvent;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;

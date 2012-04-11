@@ -1,4 +1,4 @@
-package de.codeinfection.quickwango.SafeGuard;
+package de.cubeisland.SafeGuard;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -15,7 +15,7 @@ public abstract class SafeGuardTask extends TimerTask
 
     public SafeGuardTask(int interval)
     {
-        this.timer = new Timer();
+        this.timer = new Timer(this.getClass().getSimpleName());
         this.interval = interval;
     }
 

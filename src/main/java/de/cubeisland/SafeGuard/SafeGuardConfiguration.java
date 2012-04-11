@@ -1,4 +1,4 @@
-package de.codeinfection.quickwango.SafeGuard;
+package de.cubeisland.SafeGuard;
 
 import org.bukkit.configuration.Configuration;
 

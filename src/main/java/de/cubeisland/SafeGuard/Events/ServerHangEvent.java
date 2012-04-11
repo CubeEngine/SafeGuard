@@ -1,4 +1,4 @@
-package de.codeinfection.quickwango.SafeGuard.Events;
+package de.cubeisland.SafeGuard.Events;
 
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;

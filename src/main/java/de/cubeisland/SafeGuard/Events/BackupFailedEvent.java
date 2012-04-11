@@ -1,4 +1,4 @@
-package de.codeinfection.quickwango.SafeGuard.Events;
+package de.cubeisland.SafeGuard.Events;
 
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
@@ -7,20 +7,20 @@ import org.bukkit.event.HandlerList;
  *
  * @author CodeInfection
  */
-public class BackupCompleteEvent extends Event
+public class BackupFailedEvent extends Event
 {
     private static final HandlerList handlers = new HandlerList();
 
-    private final long runtime;
+    private final Throwable cause;
 
-    public BackupCompleteEvent(long runtime)
+    public BackupFailedEvent(Throwable cause)
     {
-        this.runtime = runtime;
+        this.cause = cause;
     }
 
-    public long getRuntime()
+    public Throwable getCause()
     {
-        return this.runtime;
+        return this.cause;
     }
 
     @Override

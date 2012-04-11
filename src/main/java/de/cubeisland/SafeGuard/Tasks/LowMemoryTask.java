@@ -1,7 +1,7 @@
-package de.codeinfection.quickwango.SafeGuard.Runnables.Backup;
+package de.cubeisland.SafeGuard.Tasks;
 
-import de.codeinfection.quickwango.SafeGuard.Events.ServerLowMemoryEvent;
-import de.codeinfection.quickwango.SafeGuard.SafeGuardTask;
+import de.cubeisland.SafeGuard.Events.ServerLowMemoryEvent;
+import de.cubeisland.SafeGuard.SafeGuardTask;
 import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;

@@ -1,8 +1,8 @@
-package de.codeinfection.quickwango.SafeGuard.Runnables.Backup;
+package de.cubeisland.SafeGuard.Tasks;
 
-import de.codeinfection.quickwango.SafeGuard.Events.ServerHangEvent;
-import de.codeinfection.quickwango.SafeGuard.SafeGuard;
-import de.codeinfection.quickwango.SafeGuard.SafeGuardTask;
+import de.cubeisland.SafeGuard.Events.ServerHangEvent;
+import de.cubeisland.SafeGuard.SafeGuard;
+import de.cubeisland.SafeGuard.SafeGuardTask;
 import java.util.List;
 import org.bukkit.ChatColor;
 import org.bukkit.Server;

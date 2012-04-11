@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>de.codeinfection.quickwango</groupId>
-    <artifactId>SafeGuard</artifactId>
+    <groupId>de.cubeisland</groupId>
+    <artifactId>safeguard</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>SafeGuard</name>
-    <url>http://code-infection.de</url>
+    <url>http://cubeisland.de</url>
     <packaging>jar</packaging>
     <description>Tries to protect Bukkit servers from evil failures</description>
 
