@@ -1,6 +1,8 @@
 name: SafeGuard
-version: "${project.version}"
-main: de.codeinfection.quickwango.SafeGuard.SafeGuard
+main: de.cubeisland.SafeGuard.SafeGuard
+version: ${project.version}
+website: http://cubeisland.de
+dev-url: http://dev.bukkit.org/server-mods/safeguard
 commands:
   hang:
     usage: "/<command>"
@@ -8,13 +10,6 @@ commands:
   fillram:
     usage: "/<command>"
     description: "This command simply fills the RAM with junk :P"
-depend: []
-softdepend: []
-database: false
-website: "http://code-infection.de"
-description: ""
-author: "Quick_Wango"
+description: "Safeguards your server"
 authors:
   - "Quick_Wango"
-load: postworld
-#permissions:
