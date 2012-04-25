@@ -40,6 +40,14 @@
                 </includes>
             </resource>
             <resource>
+                <targetPath>./texts</targetPath>
+                <directory>${basedir}/src/main/resources/texts</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>*.txt</include>
+                </includes>
+            </resource>
+            <resource>
                 <targetPath>.</targetPath>
                 <directory>${basedir}/</directory>
                 <filtering>false</filtering>

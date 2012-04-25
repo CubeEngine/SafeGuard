@@ -61,9 +61,8 @@ public class SafeGuard extends JavaPlugin
             //.registerTask("hang", new HangDetectionTask(this.server, Thread.currentThread()))
             //.registerTask("backup", new BackupTask(1000 * 3, this.server)) - rework for scripts
         .startAll();
-        
-        this.textsender = new SafeGuardText(this.server);
-        //TODO test klappt :)
+        this.textsender = new SafeGuardText(this.server,this.getClass());
+        //TODO test klappt :) noch ohne Farbe
         textsender.broadcast("test", 123, "abc");
         
         if (debugMode)
