@@ -26,6 +26,7 @@ public class SafeGuard extends JavaPlugin
     protected PluginManager pm;
     protected SafeGuardConfiguration config;
     protected File dataFolder;
+    protected SafeGuardText textsender;
 
     public SafeGuard()
     {
@@ -57,10 +58,14 @@ public class SafeGuard extends JavaPlugin
 
         SafeGuardManager.getInstance()
             .registerTask("lowmem", new LowMemoryTask(this.server, 0.3, 0.15))
-            .registerTask("hang", new HangDetectionTask(this.server, Thread.currentThread()))
+            //.registerTask("hang", new HangDetectionTask(this.server, Thread.currentThread()))
             //.registerTask("backup", new BackupTask(1000 * 3, this.server)) - rework for scripts
         .startAll();
-
+        
+        this.textsender = new SafeGuardText(this.server);
+        //TODO test klappt :)
+        textsender.broadcast("test", 123, "abc");
+        
         if (debugMode)
         {
             this.getCommand("hang").setExecutor(new CommandExecutor()

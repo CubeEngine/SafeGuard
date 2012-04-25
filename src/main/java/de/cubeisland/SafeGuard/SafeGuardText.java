@@ -7,6 +7,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import org.bukkit.Server;
+import org.bukkit.command.CommandSender;
 
 /**
  *
@@ -15,9 +17,11 @@ import java.util.Map;
 public class SafeGuardText {
 
     Map<String,ArrayList<String>> texts = new HashMap<String,ArrayList<String>>();
+    Server server;
     
-    public SafeGuardText() 
+    public SafeGuardText(Server server) 
     {
+        this.server = server;
         this.addFile("test");
     }
     
@@ -28,7 +32,9 @@ public class SafeGuardText {
         
     private ArrayList<String> readFile(String filename)
     {
-        File file = new File(SafeGuard.getInstance().getDataFolder(), filename);
+        filename += ".txt";
+        //TODO Default-Dateien in Unterordner schieben!
+        File file = new File(SafeGuard.getInstance().getDataFolder(), "texts\\"+filename);
         ArrayList<String> filetext = null;
         try
         {
@@ -46,5 +52,39 @@ public class SafeGuardText {
             return null;
         }
         return filetext;
+    }
+    
+    public void send(CommandSender sender, String message, Object... args)
+    {
+        String formatText = this.fillArgs(message, args);
+        while (formatText.length()>0)
+        {
+            sender.sendMessage(formatText.substring(0, formatText.indexOf("|")-1));
+            formatText.replace(formatText.substring(0, formatText.indexOf("|")), "" );
+        }
+    }
+    
+    public void broadcast(String message, Object... args)
+    {
+        String formatText = this.fillArgs(message, args);
+        while (formatText.length()>0)
+        {
+            int end = formatText.indexOf("|");
+            server.broadcastMessage(formatText.substring(0, end));
+            formatText = formatText.substring(end+1);
+        }
+    }
+    
+    private String fillArgs(String message, Object... args)
+    {
+        ArrayList<String> textlist = texts.get(message);
+        int max = textlist.size();
+        String formatText ="";
+        for (int i=0; i<max ; ++i)
+        {
+            formatText = textlist.get(i) + "|";
+        }
+        formatText = String.format(formatText, args);
+        return formatText;
     }
 }
