@@ -1,5 +1,1 @@
 debug: true
-saveguard:
-  warning1: "The server is running low on memory!"
-  warning2: "There are only %d%% (%d / %d MB) over."
-  warning3: "Prepare for a server restart..."

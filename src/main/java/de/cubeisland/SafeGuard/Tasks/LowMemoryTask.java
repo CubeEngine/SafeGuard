@@ -20,8 +20,7 @@ public class LowMemoryTask extends SafeGuardTask
     private final double rebootMinimum;
     private long lastWarnedTick;
     private long tick;
-    private final SafeGuardConfiguration config = SafeGuard.getInstance().getConfiguration();
-    
+
     public LowMemoryTask(Server server, double warnMinimum, double rebootMinimum)
     {
         super(1000);
@@ -73,11 +72,10 @@ public class LowMemoryTask extends SafeGuardTask
      */
     private void warn(long free, long maximum, double percentage)
     {
-        
         this.server.broadcastMessage(ChatColor.DARK_RED + "#### Warning ####");
-        this.server.broadcastMessage(config.saveguard_warning1);
-        this.server.broadcastMessage(String.format(config.saveguard_warning2, Math.round(percentage * 100), free / 1024 / 1024, maximum / 1024 / 1024));
-        this.server.broadcastMessage(config.saveguard_warning3);
+        this.server.broadcastMessage("The server is running low on memory!");
+        this.server.broadcastMessage("There are only " + String.valueOf(Math.round(percentage * 100)) + "% (" + (free / 1024 / 1024) + " / " + (maximum / 1024 / 1024) + " MB) over.");
+        this.server.broadcastMessage("Prepare for a servre restart...");
         this.server.broadcastMessage("");
     }
 

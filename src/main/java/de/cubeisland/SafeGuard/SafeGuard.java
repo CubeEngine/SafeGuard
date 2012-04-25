@@ -144,9 +144,4 @@ public class SafeGuard extends JavaPlugin
             log("[debug] " + msg);
         }
     }
-    
-    public SafeGuardConfiguration getConfiguration()
-    {
-        return this.config;
-    }
 }
