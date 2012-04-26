@@ -4,4 +4,4 @@ safeguard:
     warn: 0.3
     reboot: 0.15
   hang:
-    freezeticks: 5
+    frozenticks: 5

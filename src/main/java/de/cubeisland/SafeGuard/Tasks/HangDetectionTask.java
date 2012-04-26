@@ -50,7 +50,7 @@ public class HangDetectionTask extends SafeGuardTask
     public void run()
     {
         int delta = (int)(this.currentTick - this.oldTick);
-        if (this.frozenTicks < SafeGuard.getInstance().getConfiguration().safeguard_hang_freezeticks)
+        if (this.frozenTicks < SafeGuard.getInstance().getConfiguration().safeguard_hang_frozenticks)
         {
             if (delta <= 0)
             {
