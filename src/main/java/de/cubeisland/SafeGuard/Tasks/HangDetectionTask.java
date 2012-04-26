@@ -85,8 +85,9 @@ public class HangDetectionTask extends SafeGuardTask
     {
         for (Player player : this.server.getOnlinePlayers())
         {
-            // TODO make configurable
-            player.kickPlayer("The server is restarting now...");
+            // TODO make configurable kann weg
+            SafeGuard.getInstance().textSender().kickMessage("restart", player, (Object)null);
+            //player.kickPlayer("The server is restarting now...");
         }
 
         Plugin[] plugins = this.server.getPluginManager().getPlugins();
@@ -154,10 +155,12 @@ public class HangDetectionTask extends SafeGuardTask
 
     private void warn(int delta)
     {
-        this.server.broadcastMessage(ChatColor.DARK_RED + "#### Warning ####");
-        this.server.broadcastMessage("The server seems to start lagging!");
-        this.server.broadcastMessage("The server did only reach " + delta + " ticks");
-        this.server.broadcastMessage("Prepare for a restart or timeout...");
+        SafeGuard.getInstance().textSender().broadcast("warnhang",delta);
+        //TODO kann weg...
+        //this.server.broadcastMessage(ChatColor.DARK_RED + "#### Warning ####");
+        //this.server.broadcastMessage("The server seems to start lagging!");
+        //this.server.broadcastMessage("The server did only reach " + delta + " ticks");
+        //this.server.broadcastMessage("Prepare for a restart or timeout...");
         this.server.broadcastMessage("");
     }
 

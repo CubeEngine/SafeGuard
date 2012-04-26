@@ -1,0 +1,4 @@
+#### Warning ####
+The server seems to start lagging!
+The server did only reach %d ticks
+Prepare for a restart or timeout...

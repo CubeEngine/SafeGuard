@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
 /**
  *
@@ -26,7 +28,9 @@ public class SafeGuardText {
     {
         this.server = server;
         this.clazz = clazz;
-        this.addFile("test");
+        this.addFile("warnmem");
+        this.addFile("restart");
+        this.addFile("warnhang");
     }
     
     private void addFile(String file)
@@ -111,22 +115,28 @@ public class SafeGuardText {
         String formatText = this.fillArgs(message, args);
         while (formatText.length()>0)
         {
-            sender.sendMessage(formatText.substring(0, formatText.indexOf("|")-1));
-            formatText.replace(formatText.substring(0, formatText.indexOf("|")), "" );
+            int end = formatText.indexOf("|");
+            sender.sendMessage(formatText.substring(0, end));
+            formatText = formatText.substring(end+1);
         }
     }
     
     public void broadcast(String message, Object... args)
     {
         String formatText = this.fillArgs(message, args);
+        formatText = ChatColor.DARK_RED + formatText; //erste Zeile ist immer rot : #### Warning ####
         while (formatText.length()>0)
         {
             int end = formatText.indexOf("|");
             server.broadcastMessage(formatText.substring(0, end));
-            //TODO Farben
-            SafeGuard.log(message+" | "+formatText);
             formatText = formatText.substring(end+1);
         }
+    }
+    
+    public void kickMessage(String message, Player player, Object... args)
+    {
+        String formatText = this.fillArgs(message, args);
+        player.kickPlayer(formatText.substring(0, formatText.indexOf("|")-1));
     }
     
     private String fillArgs(String message, Object... args)
@@ -136,7 +146,7 @@ public class SafeGuardText {
         String formatText ="";
         for (int i=0; i<max ; ++i)
         {
-            formatText = textlist.get(i) + "|";
+            formatText += textlist.get(i) + "|";
         }
         formatText = String.format(formatText, args);
         return formatText;

@@ -72,10 +72,12 @@ public class LowMemoryTask extends SafeGuardTask
      */
     private void warn(long free, long maximum, double percentage)
     {
-        this.server.broadcastMessage(ChatColor.DARK_RED + "#### Warning ####");
-        this.server.broadcastMessage("The server is running low on memory!");
-        this.server.broadcastMessage("There are only " + String.valueOf(Math.round(percentage * 100)) + "% (" + (free / 1024 / 1024) + " / " + (maximum / 1024 / 1024) + " MB) over.");
-        this.server.broadcastMessage("Prepare for a servre restart...");
+        SafeGuard.getInstance().textSender().broadcast("warnmem", Math.round(percentage * 100) , free / 1024 / 1024 , maximum / 1024 / 1024);
+        //TODO kann weg...
+        //this.server.broadcastMessage(ChatColor.DARK_RED + "#### Warning ####");
+        //this.server.broadcastMessage("The server is running low on memory!");
+        //this.server.broadcastMessage("There are only " + String.valueOf(Math.round(percentage * 100)) + "% (" + (free / 1024 / 1024) + " / " + (maximum / 1024 / 1024) + " MB) over.");
+        //this.server.broadcastMessage("Prepare for a servre restart...");
         this.server.broadcastMessage("");
     }
 
@@ -83,8 +85,9 @@ public class LowMemoryTask extends SafeGuardTask
     {
         for (Player player : this.server.getOnlinePlayers())
         {
-            // TODO make configurable
-            player.kickPlayer("The server is restarting now...");
+            // TODO make configurable kann weg
+            SafeGuard.getInstance().textSender().kickMessage("restart", player, (Object)null);
+            //player.kickPlayer("The server is restarting now...");
         }
         server.shutdown();
     }

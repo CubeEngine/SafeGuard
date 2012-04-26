@@ -58,13 +58,11 @@ public class SafeGuard extends JavaPlugin
 
         SafeGuardManager.getInstance()
             .registerTask("lowmem", new LowMemoryTask(this.server, 0.3, 0.15))
-            //.registerTask("hang", new HangDetectionTask(this.server, Thread.currentThread()))
+            .registerTask("hang", new HangDetectionTask(this.server, Thread.currentThread()))
             //.registerTask("backup", new BackupTask(1000 * 3, this.server)) - rework for scripts
         .startAll();
         this.textsender = new SafeGuardText(this.server,this.getClass());
-        //TODO test klappt :) noch ohne Farbe
-        textsender.broadcast("test", 123, "abc");
-        
+
         if (debugMode)
         {
             this.getCommand("hang").setExecutor(new CommandExecutor()
@@ -85,6 +83,7 @@ public class SafeGuard extends JavaPlugin
             {
                 public boolean onCommand(CommandSender cs, Command cmnd, String string, String[] strings)
                 {
+                    SafeGuard.log("evil unsafe mode ON: Filling up RAM with Pi...");
                     (new Thread(new Runnable()
                     {
                         public void run()
@@ -95,7 +94,8 @@ public class SafeGuard extends JavaPlugin
                                 ArrayList<String> lst = new ArrayList<String>();
                                 for (int i = 0; i < 1000 * 1000; ++i)
                                 {
-                                    lst.add("aasdfysgydsfgydsfgydfyshlgkyjdsgfbkyjdfbgökjsdfblgksjdfbgklsjdfbglksdjfgbklsjdfgblskdjfgbklsjdfbglksjdfgbklsjdfbglksjdfgblksjdfbgklsjdfbgklsjdfbklgsjdfbglksjdfbglksjdfgbklsdjfgbklsjdfgbklsjdfgbklsjdfbgklsjdfgblksjdfbglskdjfgblskdjfgbklsdjfgblskdjfgbkldsjfgbksldjfgbklsdjfbgklsjdfbgklsjdfgbklsjdfbgklsjdbfgkljdsfblgskdjfbglskdjfgblskdjfgblskdjfgbklsdjfbglksdjfgbklsdjfgbklsjdgfb");
+                                    //Pi rules
+                                    lst.add("3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117067982148086513282306647093844609550582231725359408128481117450284102701938521105559644622948954930381964428810975665933446128475648233786783165271201909145648566923460348610454326648213393607260249141273724587006606315588174881520920962829254091715364367892590360011330530548820");
                                 }
                                 junkMap.add(lst);
                                 try {
@@ -147,5 +147,9 @@ public class SafeGuard extends JavaPlugin
         {
             log("[debug] " + msg);
         }
+    }
+    public SafeGuardText textSender()
+    {
+        return this.textsender;
     }
 }
