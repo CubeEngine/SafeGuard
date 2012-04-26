@@ -110,6 +110,7 @@ public class SafeGuardText {
         return tokens.toArray(new String[tokens.size()]);
     }
     
+    //wird zz nicht gebraucht
     public void send(CommandSender sender, String message, Object... args)
     {
         String formatText = this.fillArgs(message, args);
