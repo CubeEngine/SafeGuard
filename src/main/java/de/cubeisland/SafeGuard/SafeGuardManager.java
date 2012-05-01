@@ -4,10 +4,9 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * Wenn es interessiert: das ist ein sogenanntes Singleton, eine klasse die nur einmal instanzoert werden kann
+ * Manages all the SafeGuardTasks
  *
- *
- * @author CodeInfection
+ * @author Phillip Schichtel
  */
 public class SafeGuardManager
 {
@@ -32,7 +31,7 @@ public class SafeGuardManager
     public SafeGuardManager registerTask(String name, SafeGuardTask task)
     {
         this.safeguards.put(name, task);
-        return this; // <-- das wäre ein fluent interface
+        return this;
     }
 
     public SafeGuardManager unregisterTask(String name)

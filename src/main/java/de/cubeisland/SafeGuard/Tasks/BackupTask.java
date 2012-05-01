@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Locale;
 import org.bukkit.Server;
 import org.bukkit.World;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 
 /**
@@ -23,10 +24,10 @@ public class BackupTask extends SafeGuardTask
     private final PluginManager pm;
     private final static SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy", Locale.US);
 
-    public BackupTask(int interval, Server server)
+    public BackupTask(Plugin plugin, int interval)
     {
-        super(interval);
-        this.server = server;
+        super(plugin, interval);
+        this.server = plugin.getServer();
         this.pm = server.getPluginManager();
         try
         {

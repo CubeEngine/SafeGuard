@@ -2,11 +2,10 @@ package de.cubeisland.SafeGuard.Tasks;
 
 import de.cubeisland.SafeGuard.Events.ServerLowMemoryEvent;
 import de.cubeisland.SafeGuard.SafeGuard;
-import de.cubeisland.SafeGuard.SafeGuardConfiguration;
 import de.cubeisland.SafeGuard.SafeGuardTask;
-import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 
 /**
  *
@@ -21,10 +20,10 @@ public class LowMemoryTask extends SafeGuardTask
     private long lastWarnedTick;
     private long tick;
 
-    public LowMemoryTask(Server server, double warnMinimum, double rebootMinimum)
+    public LowMemoryTask(Plugin plugin, double warnMinimum, double rebootMinimum)
     {
-        super(1000);
-        this.server = server;
+        super(plugin, 1000);
+        this.server = plugin.getServer();
         this.warnMinimum = warnMinimum;
         this.rebootMinimum = rebootMinimum;
         this.lastWarnedTick = 0;

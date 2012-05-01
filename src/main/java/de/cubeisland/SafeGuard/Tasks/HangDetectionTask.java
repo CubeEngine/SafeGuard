@@ -4,7 +4,6 @@ import de.cubeisland.SafeGuard.Events.ServerHangEvent;
 import de.cubeisland.SafeGuard.SafeGuard;
 import de.cubeisland.SafeGuard.SafeGuardTask;
 import java.util.List;
-import org.bukkit.ChatColor;
 import org.bukkit.Server;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -23,10 +22,15 @@ public class HangDetectionTask extends SafeGuardTask
     private int frozenTicks;
     private int serverTickCounterTaskId;
 
-    public HangDetectionTask(Server server, Thread mainThread)
+    public HangDetectionTask(Plugin plugin)
     {
-        super(1000);
-        this.server = server;
+        this(plugin, Thread.currentThread());
+    }
+
+    public HangDetectionTask(Plugin plugin, Thread mainThread)
+    {
+        super(plugin, 1000);
+        this.server = plugin.getServer();
         this.mainThread = mainThread;
         this.frozenTicks = 0;
         this.oldTick = 0;

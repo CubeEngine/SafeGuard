@@ -57,9 +57,9 @@ public class SafeGuard extends JavaPlugin
         this.saveConfig();
 
         SafeGuardManager.getInstance()
-            .registerTask("lowmem", new LowMemoryTask(this.server, config.safeguard_mem_warn, config.safeguard_mem_reboot))
-            .registerTask("hang", new HangDetectionTask(this.server, Thread.currentThread()))
-            //.registerTask("backup", new BackupTask(1000 * 3, this.server)) - rework for scripts
+            .registerTask("lowmem", new LowMemoryTask(this, config.safeguard_mem_warn, config.safeguard_mem_reboot))
+            .registerTask("hang", new HangDetectionTask(this))
+            //.registerTask("backup", new BackupTask(plugin, 1000 * 3)) - TODO rework for scripts
         .startAll();
         this.textsender = new SafeGuardText(this.server,this.getClass());
 

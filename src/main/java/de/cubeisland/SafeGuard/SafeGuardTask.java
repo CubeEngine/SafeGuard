@@ -1,7 +1,10 @@
 package de.cubeisland.SafeGuard;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
+import org.bukkit.plugin.Plugin;
 
 
 /**
@@ -10,11 +13,15 @@ import java.util.TimerTask;
  */
 public abstract class SafeGuardTask extends TimerTask
 {
+    private static final Map<String, Message> messages = new HashMap<String, Message>();
+
+    private final Plugin plugin;
     private Timer timer;
     private int interval;
 
-    public SafeGuardTask(int interval)
+    public SafeGuardTask(Plugin plugin, int interval)
     {
+        this.plugin = plugin;
         this.timer = new Timer(this.getClass().getSimpleName());
         this.interval = interval;
     }
@@ -47,5 +54,28 @@ public abstract class SafeGuardTask extends TimerTask
     {
         this.beforeStop();
         this.timer.cancel();
+    }
+
+    public void broadcastMessage(String name, Object... params)
+    {
+        for (String line : messages.get(name).getLines(params))
+        {
+
+        }
+    }
+
+    public static void addMessage(Message message)
+    {
+        messages.put(message.getName(), message);
+    }
+
+    public static void removeMessage(String name)
+    {
+        messages.remove(name);
+    }
+
+    public static void clearMessages()
+    {
+        messages.clear();
     }
 }
